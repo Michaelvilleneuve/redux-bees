@@ -77,7 +77,7 @@ export default function buildApi(endpoints, config = {}) {
         })
         .catch((error) => {
           delete pendingPromises[promiseId];
-          return Promise.reject(error);
+          return Promise.reject({ ...error, ...options });
         })
         .catch(afterReject);
 
