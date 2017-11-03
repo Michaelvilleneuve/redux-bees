@@ -68,12 +68,13 @@ export default function buildApi(endpoints, config = {}) {
       );
 
       pendingPromises[promiseId] = req;
+      console.log('HHAA');
 
       const promise = req
         .then(afterResolve)
         .then((result) => {
           delete pendingPromises[promiseId];
-          return result;
+          return { ...result,  ...options };
         })
         .catch((error) => {
           delete pendingPromises[promiseId];
